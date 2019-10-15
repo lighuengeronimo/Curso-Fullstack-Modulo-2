@@ -1,0 +1,29 @@
+.nav, .footer{
+	/*background-color;*/
+	border:solid 2px rgb(117, 117, 117);
+	background-color:#f1f1f1;
+	margin-bottom:2%;
+}
+
+
+.sticky-top{
+	background-color: white;
+}
+
+.dropdown-item{
+	background-color: white;
+}
+
+.nav-tabs .nav-item.show .nav-link, .dropdown-item:hover {
+	background-color:#dedede;
+}
+
+.header>a {
+	display:inline-block;
+}
+
+#mailto {
+	float:right;
+}
+
+
