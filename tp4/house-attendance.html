@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="113Congress.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Attendance of 113th Congress</title>
+</head>
+
+<body>
+  <div class="container" id="app">
+    <header>
+      <a class="nav-link d-inline" href="index.html">
+        <img src="imagenes_tgif/tigf-logo_v1.png" class="img-fluid inline" alt="tgif logo" id="logo">
+        <h1 class="d-inline">Transparent Government In Fact</h1>
+      </a>
+      <a href="mailto:info@tgif.net" class="d-inline" id="mailto">info@tgif.net</a>
+    </header>
+
+    <div class="sticky-top">
+      <nav>
+        <ul class="nav nav-tabs ">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item drowpdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">Congress 113</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="senate-data.html">Senate</a>
+              <a class="dropdown-item" href="house-data.html">House</a>
+            </div>
+          </li>
+          <li class="nav-item drowpdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">Attendance</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="senate-attendance.html">Senate</a>
+              <a class="dropdown-item" href="#">House</a>
+            </div>
+          </li>
+          <li class="nav-item drowpdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">Party Loyalty</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="senate-loyalty.html">Senate</a>
+              <a class="dropdown-item" href="house-loyalty.html">House</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+
+      <div>
+        <div class="row">
+          <div class="col-6">
+            <h2>Attendance</h2>
+            <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house.
+              Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in
+              most
+              cases, debates continue even if a majority is not present.</p>
+
+            <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating
+              "aye"
+              or
+              "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as
+              a
+              roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device.
+              In
+              the
+              case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the
+              tiebreaking vote.</p>
+          </div>
+          <div class="col-6">
+
+            <h3>House at a glance</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr class="row">
+                  <th class="col">Party</th>
+                  <th class="col">Number of Reps</th>
+                  <th class="col">% Voted with Prty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row">
+                  <td class="col">Democrats</td>
+                  <td class="col">{{statisticsVue.numberOfDemocrats}}</td>
+                  <td class="col">{{statisticsVue.voted_with_Prty_Avg_D}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col">Republicans</td>
+                  <td class="col">{{statisticsVue.numberOfRepublicans}}</td>
+                  <td class="col">{{statisticsVue.voted_with_Prty_Avg_R}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col">Independents</td>
+                  <td class="col">{{statisticsVue.numberOfIndependents}}</td>
+                  <td class="col">{{statisticsVue.voted_with_Prty_Avg_I}}</td>
+                </tr>
+                <tr class="row">
+                  <td class="col">Total</td>
+                  <td class="col">{{statisticsVue.total}}</td>
+                  <td class="col">{{statisticsVue.voted_with_Prty_Avg_All}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>  
+
+        <div class="row justify-content-between mt-5">
+          <div class="col-5">
+            <h3>Least Engaged (Bottom 10% Attendance)</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr class="row">
+                  <th class="col">Name</th>
+                  <th class="col">Number of Missed Votes</th>
+                  <th class="col">% Missed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row" v-for="member in statisticsVue.least_Engaged">
+                  <td class="col">{{ member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                  <td class="col">{{member.missed_votes}}</td>
+                  <td class="col">{{member.missed_votes_pct}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-5">
+            <h3>Most Engaged (Top 10% Attendance)</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr class="row">
+                  <th class="col">Name</th>
+                  <th class="col">Number of Missed Votes</th>
+                  <th class="col">% Missed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row" v-for="member in statisticsVue.most_Engaged">
+                  <td class="col">{{ member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                  <td class="col">{{member.missed_votes}}</td>
+                  <td class="col">{{member.missed_votes_pct}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="statistics.js"></script>
+    <script>
+      getMembersJson("https://api.propublica.org/congress/v1/113/house/members.json", "ndWnFTRFxhWI5gwuEK7VG6U7kZHR04vtGEDqqcMq");  
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
