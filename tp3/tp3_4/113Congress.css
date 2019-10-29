@@ -1,0 +1,46 @@
+body{
+	overflow-y:scroll;
+}
+.container{
+	margin-left:10%;
+}
+
+#logo{
+  width:15%;
+}
+
+h1, h1:hover{
+color: black;
+padding:3%;
+}
+.nav, .footer{
+	/*background-color;*/
+	border:solid 1.5px rgb(117, 117, 117);
+	border-radius: 5px;
+	background-color:#f1f1f1;
+	margin-bottom:2%;
+}
+
+
+header{
+	background-color: white;
+}
+
+.dropdown-item{
+	background-color: white;
+}
+
+.nav-tabs .nav-item.show .nav-link, .dropdown-item:hover {
+	background-color:#dedede;
+}
+
+.header>a {
+	display:inline-block;
+}
+
+#mailto {
+	float:right;
+	margin-top:10%;
+}
+
+
